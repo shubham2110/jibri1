@@ -46,6 +46,7 @@ RUN \
 
 COPY rootfs/ /
 COPY ./set-slave-pcm.sh /etc/chromium.d/set-slave-pcm.sh
+COPY ./jibri.jar /opt/jitsi/jibri/jibri.jar
 RUN chmod +x /etc/chromium.d/set-slave-pcm.sh
 #RUN sed -i '2i . /etc/chromium.d/set-slave-pcm.sh' /opt/google/chrome/google-chrome
 
