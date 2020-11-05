@@ -10,12 +10,15 @@
             // The hosts of the XMPP servers to connect to as part of
             //  this environment
             "xmpp_server_hosts": [
-                "myhost.instantconnect.in"
+		"{{ .Env.XMPP_SERVER }}"
+                //"myhost.instantconnect.in"
             ],
-            "xmpp_domain": "myhost.instantconnect.in",
+	    "xmpp_domain": "{{ .Env.XMPP_DOMAIN }}",
+            //"xmpp_domain": "myhost.instantconnect.in",
             // Jibri will login to the xmpp server as a privileged user 
             "control_login": {
-                "domain": "auth.myhost.instantconnect.in",
+		"domain": "{{ .Env.XMPP_AUTH_DOMAIN }}",
+                //"domain": "auth.myhost.instantconnect.in",
                 // The credentials for logging in
                 "username": "{{ .Env.JIBRI_XMPP_USER }}",
                 "password": "{{ .Env.JIBRI_XMPP_PASSWORD }}"
