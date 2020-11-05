@@ -2,7 +2,7 @@ version: '3'
 
 services:
     jibri:
-        image: jitsi/jibri:latest
+        image: jitsi/jibri1:latest
         restart: ${RESTART_POLICY}
         volumes:
             - ${CONFIG}/jibri:/config:Z
@@ -29,8 +29,8 @@ services:
             - JIBRI_LOGS_DIR
             - DISPLAY=:0
             - TZ
-        depends_on:
-            - jicofo
-        networks:
-            meet.jitsi:
+#        depends_on:
+#            - jicofo
+#        networks:
+#            meet.jitsi:
 

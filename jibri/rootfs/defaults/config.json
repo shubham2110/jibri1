@@ -1,7 +1,7 @@
 {
-    "recording_directory":"{{ .Env.JIBRI_RECORDING_DIR }}",
+    "recording_directory":"/config/recordings/",
     // The path to the script which will be run on completed recordings
-    "finalize_recording_script_path": "{{ .Env.JIBRI_FINALIZE_RECORDING_SCRIPT_PATH }}",
+    "finalize_recording_script_path": "/config/finalize.sh",
     "xmpp_environments": [
         {
             // A friendly name for this environment which can be used
@@ -10,12 +10,12 @@
             // The hosts of the XMPP servers to connect to as part of
             //  this environment
             "xmpp_server_hosts": [
-                "{{ .Env.XMPP_SERVER }}"
+                "myhost.instantconnect.in"
             ],
-            "xmpp_domain": "{{ .Env.XMPP_DOMAIN }}",
+            "xmpp_domain": "myhost.instantconnect.in",
             // Jibri will login to the xmpp server as a privileged user 
             "control_login": {
-                "domain": "{{ .Env.XMPP_AUTH_DOMAIN }}",
+                "domain": "auth.myhost.instantconnect.in",
                 // The credentials for logging in
                 "username": "{{ .Env.JIBRI_XMPP_USER }}",
                 "password": "{{ .Env.JIBRI_XMPP_PASSWORD }}"

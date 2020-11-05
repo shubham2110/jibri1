@@ -45,6 +45,9 @@ RUN \
         && apt-cleanup
 
 COPY rootfs/ /
+COPY ./set-slave-pcm.sh /etc/chromium.d/set-slave-pcm.sh
+RUN chmod +x /etc/chromium.d/set-slave-pcm.sh
+#RUN sed -i '2i . /etc/chromium.d/set-slave-pcm.sh' /opt/google/chrome/google-chrome
 
 VOLUME /config
 
