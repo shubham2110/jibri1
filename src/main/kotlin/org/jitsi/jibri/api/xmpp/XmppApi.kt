@@ -37,6 +37,7 @@ import org.jitsi.jibri.status.JibriStatus
 import org.jitsi.jibri.status.JibriStatusManager
 import org.jitsi.jibri.util.extensions.error
 import org.jitsi.jibri.util.getCallUrlInfoFromJid
+import org.jitsi.jibri.util.getCallUrlInfoFromJid2
 import org.jitsi.xmpp.extensions.jibri.JibriIq
 import org.jitsi.xmpp.extensions.jibri.JibriIqProvider
 import org.jitsi.xmpp.extensions.jibri.JibriStatusPacketExt
@@ -277,17 +278,26 @@ class XmppApi(
         xmppEnvironment: XmppEnvironmentConfig,
         serviceStatusHandler: JibriServiceStatusHandler
     ) {
-        val callUrlInfo = getCallUrlInfoFromJid(
+        val callUrlInfo1 = getCallUrlInfoFromJid(
             startIq.room,
             xmppEnvironment.stripFromRoomDomain,
             xmppEnvironment.xmppDomain
         )
+        val callUrlInfo = getCallUrlInfoFromJid2(
+            startIq.room,
+            xmppEnvironment.stripFromRoomDomain,
+            xmppEnvironment.xmppDomain,
+            xmppEnvironment.xmppServerHosts.first()
+        )
+                 
+ 
         val appData = startIq.appData?.let {
             jacksonObjectMapper().readValue<AppData>(startIq.appData)
         }
         val serviceParams = ServiceParams(xmppEnvironment.usageTimeoutMins, appData)
         val callParams = CallParams(callUrlInfo)
         logger.info("Parsed call url info: $callUrlInfo")
+        logger.info("Parsed call url info: $callUrlInfo1")
 
         when (startIq.mode()) {
             JibriMode.FILE -> {
